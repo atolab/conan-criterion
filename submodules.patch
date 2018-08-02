@@ -21,9 +21,12 @@
  
  cr_add_subproject (csptr
    GIT "https://github.com/Snaipe/libcsptr#0d52904"
-@@ -84,12 +87,14 @@
+@@ -82,20 +85,21 @@
+   CMAKE
+   IF NOT BOXFORT_FOUND)
  
- add_definitions(-DBXF_STATIC_LIB -DNN_STATIC_LIB)
+-add_definitions(-DBXF_STATIC_LIB -DNN_STATIC_LIB)
++add_definitions(-DBXF_STATIC_LIB)
  
 +if(NOT WINGETOPT_FOUND)
  cr_add_subproject (wingetopt
@@ -36,7 +39,13 @@
  
  include (Properties)
  
-@@ -137,7 +142,7 @@
+ if (NOT NANOMSG_FOUND OR NANOMSG_LIBRARIES MATCHES ".*\\.a")
+   set (STATIC_NANOMSG 1)
+-  add_definitions (-DNN_STATIC_LIB)
+ endif ()
+ 
+ include_directories(
+@@ -137,7 +141,7 @@
  cr_link_subproject(criterion nanomsg STATIC IF NOT NANOMSG_FOUND)
  cr_link_subproject(criterion dyncall_s STATIC IF NOT DYNCALL_FOUND)
  cr_link_subproject(criterion boxfort STATIC IF NOT BOXFORT_FOUND)
@@ -45,7 +54,7 @@
  
  if (CSPTR_FOUND)
    include_directories("${CSPTR_INCLUDE_DIRS}")
-@@ -155,6 +160,10 @@
+@@ -155,6 +159,10 @@
    include_directories("${BOXFORT_INCLUDE_DIRS}")
    cr_link_libraries(criterion "${BOXFORT_LIBRARIES}" IF BOXFORT_FOUND)
  endif ()

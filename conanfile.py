@@ -27,13 +27,13 @@ class CriterionConan(ConanFile):
     build_subfolder = "build_subfolder"
 
     requires = (
-        ('nanomsg/06252016@k0ekk0ek/stable', 'private'),
+        ('nanomsg/06252016@atolab/stable', 'private'),
         # FIXME: Should be handled in the same way as Klib as only smalloc is
         #        used by Criterion and libcsptr is probably not worth being
         #        maintained as a separate package.
-        ('libcsptr/2.0.4@k0ekk0ek/stable', 'private'),
-        ('dyncall/09132016@k0ekk0ek/stable', 'private'),
-        ('boxfort/12122016@k0ekk0ek/stable', 'private')
+        ('libcsptr/2.0.4@atolab/stable', 'private'),
+        ('dyncall/09132016@atolab/stable', 'private'),
+        ('boxfort/12122016@atolab/stable', 'private')
     )
 
     branch = "master"
@@ -45,7 +45,7 @@ class CriterionConan(ConanFile):
 
     def requirements(self):
         if self.settings.os == 'Windows':
-            self.requires('wingetopt/0.95@k0ekk0ek/stable', private=True, override=False)
+            self.requires('wingetopt/0.95@atolab/stable', private=True, override=False)
 
     def source(self):
         self.run('git clone --branch={0} {1}.git {2}'
